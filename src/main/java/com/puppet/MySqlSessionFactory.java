@@ -69,11 +69,11 @@ public class MySqlSessionFactory {
         private Object invokeSelect(Object proxy, Method method, Object[] args) {
             // 1. 动态生成 SQL 语句
             String selectSql = createSelectSql(method);
-            System.out.println("[SQL] " + sql);
+            System.out.println("[SQL] " + selectSql);
 
             // 2. 建立数据库连接并执行查询
             try (Connection conn = DriverManager.getConnection(JDBCURL, DBUSER, PASSWORD);
-                 PreparedStatement statement = conn.prepareStatement(sql)) {
+                 PreparedStatement statement = conn.prepareStatement(selectSql)) {
 
                 // 3. 设置 SQL 参数（从方法参数中获取）
                 for (int i = 0; i < args.length; i++) {
