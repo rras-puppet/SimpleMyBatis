@@ -68,7 +68,7 @@ public class MySqlSessionFactory {
          */
         private Object invokeSelect(Object proxy, Method method, Object[] args) {
             // 1. 动态生成 SQL 语句
-            String sql = createSql(method);
+            String selectSql = createSelectSql(method);
             System.out.println("[SQL] " + sql);
 
             // 2. 建立数据库连接并执行查询
@@ -137,7 +137,7 @@ public class MySqlSessionFactory {
          * @return 生成的 SQL 字符串
          * @throws RuntimeException 如果返回类型未标注 {@link TableName} 注解
          */
-        private String createSql(Method method) {
+        private String createSelectSql(Method method) {
             StringBuilder sql = new StringBuilder();
             sql.append("select ");
 
